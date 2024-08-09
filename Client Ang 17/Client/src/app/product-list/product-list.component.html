@@ -1,0 +1,23 @@
+
+
+<div class="container">
+    <div class="row">
+        @for (product of products; track $index) {
+        <div class="col-4">
+            <div class="card my-5 mx-5" style="width: 18rem;">
+                <img [src]="product.productImage ? 'https://localhost:7210/Images/'+product.productImage: '../../assets/Images/default-product.webp'" class="card-img-top card-imag-size" alt="product image">
+
+                <div class="card-body text-center">
+                    <h3 class="card-title">{{product.name}}</h3>
+                    <p class="card-text"> {{product.price | currency}} </p>
+                    <!-- <button [routerLink]="['/product-details', product.id]" class="btn btn-primary" >Product Details</button> -->
+                    <button routerLink="/product-details/{{product.id}}" class="btn btn-primary" >Product Details</button>
+
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+

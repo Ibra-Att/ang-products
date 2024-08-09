@@ -1,0 +1,26 @@
+<div class="container   margTop">
+    <div class="card ">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+                                
+                     <img [src]="productDetails?.productImage ? 'https://localhost:7210/Images/'+productDetails?.productImage: '../../assets/Images/default-product.webp'" /></div>
+                   
+             
+                <div class="details col-md-6">
+                    <h2 class="product-title">
+                        <strong>{{productDetails?.name}}</strong>
+                    </h2>
+                  
+                    <p class="product-description"> {{productDetails?.description}}</p>
+                    <h4 class="price">current price: <span>{{productDetails?.price | currency}}</span></h4>                  
+                    
+                    <h4 class="creation">addittion date: <span>{{productDetails?.creationDate | date }}</span></h4>          
+                    <div class="action">
+                        <button routerLink="/cart" class="add-to-cart btn btn-primary" type="button">add to cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

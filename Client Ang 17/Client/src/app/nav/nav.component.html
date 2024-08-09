@@ -1,0 +1,75 @@
+<!-- Navbar -->
+<nav class="mb-5 navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <!-- Container wrapper -->
+    <div class="container-fluid ">
+  
+  
+      <!-- Toggle button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <!-- Collapsible wrapper -->
+      <div
+        class="collapse navbar-collapse"
+        id="navbarButtonsExample"
+        mdbCollapse
+    
+      >
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-5">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/product-list" routerLinkActive="active">Product List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  routerLink="products-table" routerLinkActive="active">Products table</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="about-us" routerLinkActive="active">About us</a>
+          </li>
+
+        </ul>
+        <!-- Left links -->
+  @if(!accountService.currentUser()){
+        <div class="d-flex align-items-center">
+          <button routerLink="login" type="button" class="btn btn-outline-success px-3 me-2 rounded-pill">
+            Login
+          </button>
+          <button routerLink="register" type="button" class="btn btn-outline-primary me-3 rounded-pill">
+            Sign up for free
+          </button>     
+        </div>
+      }
+
+      @if(accountService.currentUser()){
+        <div class="d-flex align-items-center">   
+         Hi {{accountService.currentUser()?.userName?.split(' ')?.slice(0,1)}} 
+          <button mat-button [matMenuTriggerFor]="menu" >
+            <mat-icon>more_vert</mat-icon>
+
+          </button>
+          <mat-menu #menu="matMenu">
+            
+            <button mat-menu mat-button  class="btn btn-outline-secondary rounded-pill">Edit Profile</button>
+            <button  mat-menu mat-raised-button color="warn"   type="button" class="rounded-pill" (click)="logout()">
+              Logout
+            </button>         
+            </mat-menu>
+             
+        </div>
+      }
+
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
