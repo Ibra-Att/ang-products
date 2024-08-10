@@ -6,6 +6,7 @@ using AngulartrainingAPI.Models.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using static AngulartrainingAPI.Helper.Enum.Enums;
 
 namespace AngulartrainingAPI.Controllers
 {
@@ -56,7 +57,7 @@ namespace AngulartrainingAPI.Controllers
 
                     return Ok(response);
                 }
-                throw new Exception("wrong email or password");
+                return Unauthorized("wrong email or password");
             }
             catch (Exception ex)
             {
@@ -104,15 +105,25 @@ namespace AngulartrainingAPI.Controllers
                     FullName = dto.FullName,
                     Email = dto.Email,
                     Password = dto.Password,
-                    Phone = dto.Phone,
-                    ProfileImage=dto.ProfileImage,
+                    Phone = dto.Phone,            
+                    ProfileImage =dto.ProfileImage,
                     IsDeleted=false,
                     CreationDate=DateTime.Now,
                     BirthDate=dto.BirthDate,
-                    ISLoggedin=false,
-                    
+                    ISLoggedin=false,              
 
                 };
+                if (dto.Gender != null)
+                {
+                    if (Enum.TryParse(dto.Gender, true, out Gender gender))
+                    {
+                        user.Gender = gender;
+                    }
+                    else
+                    {
+                        throw new Exception("Invalid gender value");
+                    }
+                }
                 await _context.Users.AddAsync(user);
                 await _context.SaveChangesAsync();
                 return StatusCode(200, "User has been created");

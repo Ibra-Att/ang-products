@@ -3,13 +3,13 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { AboutUsComponent } from './about-us/about-us.component';
-import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProductsTableComponent } from './products-table/products-table.component';
 import { CartComponent } from './cart/cart.component';
 import { authGuard } from './_guards/auth.guard';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
     {path:'',component:MainPageComponent, title:'Home page'},

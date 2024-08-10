@@ -1,4 +1,6 @@
-﻿namespace AngulartrainingAPI.Models.Entities
+﻿using static AngulartrainingAPI.Helper.Enum.Enums;
+
+namespace AngulartrainingAPI.Models.Entities
 {
     public class User
     {
@@ -7,6 +9,7 @@
         public string Email { get; set; } = string.Empty; 
         public string Password { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
+        public Gender Gender { get; set; }
         public string ProfileImage {  get; set; } = string.Empty;
         public bool ISLoggedin { get; set; }
         public bool IsDeleted { get; set; }

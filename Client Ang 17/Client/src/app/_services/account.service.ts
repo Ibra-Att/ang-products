@@ -3,6 +3,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import {  userDto } from '../_dtos/Auth/userDto';
 import { map, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { registerUserDto } from '../_dtos/Auth/registerUserDto';
 
 @Injectable({
   providedIn: 'root'
@@ -46,4 +47,15 @@ logout(){
   this.currentUser.set(null);
 }
  
+// registerUser(input:any){
+//   return this.http.post<registerUserDto>(`${this.baseUrl}/Authentication/Register`,input);
+//  }
+registerUser(input:registerUserDto ) {
+  return this.http.post(`${this.baseUrl}/Authentication/Register`, input,{responseType:"text"});
 }
+
+
+
+}
+
+

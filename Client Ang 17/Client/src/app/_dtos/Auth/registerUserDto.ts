@@ -1,7 +1,9 @@
 export interface registerUserDto {
-  FullName: string | undefined;
-  Email: string | undefined;
-  Password: string | undefined;
-  Phone: string | undefined;
-  ProfileImage: string | undefined;
+  fullName: string | undefined;
+  email: string | undefined;
+  password: string | undefined;
+  gender:string|undefined;
+  phone: string | undefined;
+  birthDate: Date |undefined;
+  profileImage: string | undefined;
 }

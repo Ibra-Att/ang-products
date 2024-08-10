@@ -20,7 +20,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
                   modalStateErrors.push(error.error.errors[key])
                 }
               }
-              toastr.error('Unauthorised', error.status)
+              toastr.error('Bad request', error.status)
 
               throw modalStateErrors.flat();
 
