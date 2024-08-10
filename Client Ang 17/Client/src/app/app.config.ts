@@ -10,13 +10,14 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { timeout } from 'rxjs';
 import { errorInterceptor } from './_interceptors/error.interceptor';
 import { jwtInterceptor } from './_interceptors/jwt.interceptor';
+import { loadingDelayInterceptor } from './_interceptors/loading-delay.interceptor';
 
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     // provideHttpClient(withInterceptors([errorInterceptor])),
-    provideHttpClient(withInterceptors([errorInterceptor,jwtInterceptor])),
+    provideHttpClient(withInterceptors([errorInterceptor,jwtInterceptor,loadingDelayInterceptor])),
     // provideHttpClient(withInterceptors([jwtInterceptor])),
 
     // provideHttpClient(),

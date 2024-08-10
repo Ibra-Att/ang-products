@@ -1,4 +1,5 @@
 ﻿using AngulartrainingAPI.DataContext;
+using AngulartrainingAPI.DTO.Product;
 using AngulartrainingAPI.DTO.User;
 using AngulartrainingAPI.Helper.Token;
 using AngulartrainingAPI.Interfaces;
@@ -21,8 +22,39 @@ namespace AngulartrainingAPI.Controllers
             _context = context;
         }
 
-       
-    
+
+
+        [HttpGet]
+        [Route("[action]/{id}")]
+        public async Task<IActionResult> GetUSerById([FromRoute] int id)
+        {
+            try
+            {
+
+                var query = from u in _context.Users
+                            where u.Id == id
+                            select new UpdateUserDTO
+                            {
+                                Id = u.Id,
+                                FullName = u.FullName,
+                                Email = u.Email,
+                                Phone = u.Phone,
+                                ProfileImage = u.ProfileImage,
+                                BirthDate = u.BirthDate,
+
+                            };
+
+                var result = await query.SingleOrDefaultAsync();
+                if (result != null)
+                    return Ok(result);
+                else throw new Exception("No user found");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Something went wrong{ex.Message}");
+
+            }
+        }
 
 
         [HttpPost]

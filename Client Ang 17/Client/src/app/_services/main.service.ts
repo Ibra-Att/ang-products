@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { ProductCardDto } from '../_dtos/productCardDto';
 import { Observable } from 'rxjs';
 import { productDetailsDto } from '../_dtos/productDetailsDto';
@@ -13,10 +13,17 @@ export class MainService {
   http=inject(HttpClient);
   baseUrl=environment.apiUrl;
 
+ productSig=signal<ProductCardDto[]|undefined>([]);
 
  
- getProductsList():Observable<ProductCardDto[]>{
+ getProductsTable():Observable<ProductCardDto[]>{
   return this.http.get<ProductCardDto[]>(`${this.baseUrl}/Main/GetAllProduct`);
+ }
+
+getProductsList(){
+  return this.http.get<ProductCardDto[]>(`${this.baseUrl}/Main/GetAllProduct`).subscribe({
+    next: res => this.productSig.set(res)
+  });
  }
 
 getProductDetails(id:number):Observable<productDetailsDto>{

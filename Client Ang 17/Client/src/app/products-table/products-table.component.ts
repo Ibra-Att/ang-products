@@ -54,11 +54,13 @@ ngOnInit(){
   this.fetchProducts()
 }
 
-fetchProducts(){ this.mainService.getProductsList().subscribe({
+fetchProducts(){ this.mainService.getProductsTable().subscribe({
   next: res=> this.dataSource.data=res,
   error: error=> console.log(error)      
 })}
-
+// fetchProduct(){
+//   this.mainService.getProductsList();
+// }
 
 
 

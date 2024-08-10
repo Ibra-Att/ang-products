@@ -13,19 +13,32 @@ import { ProductDetailsComponent } from '../product-details/product-details.comp
   styleUrl: './product-list.component.css'
 })
 export class ProductListComponent implements OnInit {
-  products:ProductCardDto[]=[];
+  // products:ProductCardDto[]=[];
   mainService=inject(MainService);
   ProductId:number=0;
   router=inject(Router)
 
 ngOnInit() {
-
-  this.mainService.getProductsList().subscribe({
-    next: res=> this.products=res,
-    error: error=> console.log(error)  
-    
-  })
+if(this.mainService.productSig()?.length===0) 
+  this.loadProduct();
 }
+
+// loadProduct(){
+//   this.mainService.getProductsList().subscribe({
+//     next: res=> this.products=res,
+//     error: error=> console.log(error)  
+    
+//   })
+// }
+
+loadProduct(){
+this.mainService.getProductsList();
+
+}
+
+
+
+
 
 // sendProdId(id:number|undefined){
 //   if(id){

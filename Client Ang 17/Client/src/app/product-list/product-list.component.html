@@ -2,7 +2,7 @@
 
 <div class="container">
     <div class="row">
-        @for (product of products; track $index) {
+        @for (product of mainService.productSig(); track $index) {
         <div class="col-4">
             <div class="card my-5 mx-5" style="width: 18rem;">
                 <img [src]="product.productImage ? 'https://localhost:7210/Images/'+product.productImage: '../../assets/Images/default-product.webp'" class="card-img-top card-imag-size" alt="product image">
